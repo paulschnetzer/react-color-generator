@@ -22,7 +22,7 @@ const globalStyles = css`
   }
 `;
 
-const Button = css`
+const buttonStyle = css`
   margin: 30px auto;
   display: block;
   border: solid black 4px;
@@ -48,7 +48,7 @@ const block = css`
   margin-left: 10%;
   margin-right: 10%;
 `;
-const ColorInNumber = css`
+const colorInNumber = css`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -57,7 +57,7 @@ const ColorInNumber = css`
   letter-spacing: 3px;
 `;
 
-const form = css`
+const center = css`
   text-align: center;
 `;
 
@@ -80,14 +80,14 @@ function ColorPicker() {
   return (
     <div>
       <Global styles={globalStyles} />
-      <button onClick={() => setColor(randomcolor())} css={Button}>
+      <button onClick={() => setColor(randomcolor())} css={buttonStyle}>
         RANDOM COLOR
       </button>
 
       <div css={block} style={{ backgroundColor: color }}>
-        <div css={ColorInNumber}>{color}</div>
+        <div css={colorInNumber}>{color}</div>
       </div>
-      <form onSubmit={handleSubmit} css={form}>
+      <form onSubmit={handleSubmit} css={center}>
         <br />
         <br />
 
@@ -96,34 +96,42 @@ function ColorPicker() {
         </button>
 
         <label>
-          <p css={whitewords}>HUE</p>
-
-          <input
-            css={whiteinputTest}
-            type="text"
-            value={hue}
-            onChange={(e) => setHue(e.target.value)}
-          />
           <div>
+            <p css={whitewords} for="hue">
+              HUE
+            </p>
+            <input
+              css={whiteinputTest}
+              type="text"
+              id="hue"
+              value={hue}
+              onChange={(e) => setHue(e.target.value)}
+            />
             <br />
             <input
               type="radio"
               value="light"
-              name="ligtness"
+              name="lightness"
+              id="lightness"
               onChange={(e) => setLight(e.target.value)}
             />
+            <label css={whitewords} for="lightness">
+              Light Color
+            </label>
 
-            <span css={whitewords}>Light Color</span>
             <br />
 
             <input
               type="radio"
               value="dark"
-              name="ligtness"
+              name="lightness"
+              id="darkness"
               onChange={(e) => setLight(e.target.value)}
-            ></input>
+            />
 
-            <span css={whitewords}>Dark Color</span>
+            <label css={whitewords} for="darkness">
+              Dark Color
+            </label>
           </div>
         </label>
       </form>
